@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مدار الذكاء | آخر أخبار نماذج الذكاء الاصطناعي</title>
+<meta name="description" content="موقع عربي متخصص في آخر أخبار نماذج الذكاء الاصطناعي، مقارنات النماذج، أفضل أدوات الفيديو والبرمجة. يتحدث يومياً 8 صباحاً بتوقيت سلطنة عمان.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <div class="logo">مـدار<span>AI</span></div>
+      <p>آخر أخبار نماذج الذكاء الاصطناعي</p>
+    </div>
+    <div class="controls">
+      <div class="font-controls" title="التحكم بحجم الخط">
+        <button id="fontDecrease" aria-label="تصغير الخط">أ-</button>
+        <button id="fontReset" aria-label="حجم افتراضي">أ</button>
+        <button id="fontIncrease" aria-label="تكبير الخط">أ+</button>
+      </div>
+      <button id="themeToggle" class="theme-btn" aria-label="تبديل الثيم">
+        <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+        <span id="themeLabel">ليلي</span>
+      </button>
+    </div>
+  </div>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#news">آخر الأخبار</a>
+      <a href="#models">مقارنة النماذج</a>
+      <a href="#video">أدوات الفيديو</a>
+      <a href="#code">أدوات البرمجة</a>
+    </div>
+  </nav>
+</header>
+
+<main class="container">
+  <!-- Status / update bar -->
+  <section class="update-bar">
+    <div class="update-info">
+      <span class="pulse"></span>
+      <div>
+        <strong id="lastUpdateText">آخر تحديث: اليوم الساعة 8:00 صباحاً بتوقيت مسقط</strong>
+        <small id="nextUpdateText">التحديث القادم بعد: --:--:--</small>
+      </div>
+    </div>
+    <div class="update-date">
+      <span>🇴🇲 مسقط</span>
+      <strong id="todayDate">—</strong>
+    </div>
+  </section>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <span class="badge">تحديث يومي • 8 صباحاً بتوقيت عُمان</span>
+      <h1>كل جديد نماذج الذكاء الاصطناعي<br>في مكان واحد، <em>بعربية بسيطة</em></h1>
+      <p>نتابع لك OpenAI و Claude و Gemini و DeepSeek لحظة بلحظة، ونلخص أهم الإصدارات، ونقارن أفضل أدوات الفيديو والبرمجة لتختار الصح بدون تشتت.</p>
+      <div class="hero-actions">
+        <a href="#news" class="btn primary">تصفح أخبار اليوم</a>
+        <a href="#models" class="btn ghost">قارن بين النماذج</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>4</strong><span>نماذج كبرى</span></div>
+        <div><strong>12+</strong><span>أداة فيديو وبرمجة</span></div>
+        <div><strong>8:00</strong><span>تحديث يومي مسقط</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="mini-header">🔥 الأبرز اليوم</div>
+      <h3 id="heroTitle">GPT-5.2 يتفوق في البرمجة والاستدلال الطويل</h3>
+      <p id="heroDesc">تسريبات تكشف تفوق OpenAI الجديد على Claude 4.5 و Gemini 2.5 Pro في اختبارات البرمجة متعددة الخطوات...</p>
+      <div class="timer-box">
+        <small>العد التنازلي للتحديث القادم (8 صباحاً مسقط)</small>
+        <div class="timer" id="countdown">00:00:00</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search / filter -->
+  <section id="news" class="section">
+    <div class="section-head">
+      <div>
+        <h2>📰 آخر الأخبار</h2>
+        <p>يتم التحديث تلقائياً كل يوم الساعة 8:00 صباحاً بتوقيت سلطنة عمان (Asia/Muscat)</p>
+      </div>
+      <div class="filter-row">
+        <input id="searchInput" type="search" placeholder="ابحث: Sora, Claude, برمجة...">
+        <select id="categoryFilter">
+          <option value="all">كل التصنيفات</option>
+          <option value="نماذج">نماذج لغوية</option>
+          <option value="فيديو">فيديو</option>
+          <option value="برمجة">برمجة</option>
+          <option value="أدوات">أدوات</option>
+        </select>
+      </div>
+    </div>
+    <div id="newsGrid" class="news-grid"></div>
+  </section>
+
+  <!-- Models comparison -->
+  <section id="models" class="section">
+    <div class="section-head">
+      <div>
+        <h2>⚖️ المقارنة الكبرى: نماذج الذكاء الاصطناعي</h2>
+        <p>OpenAI مقابل Claude مقابل Gemini مقابل DeepSeek — من الأقوى في ماذا؟</p>
+      </div>
+      <div class="verdict">توصيتنا السريعة: <strong>للبرمجة Claude / للبحث والسرعة Gemini / للإبداع العام GPT / للتوفير والمصادر المفتوحة DeepSeek</strong></div>
+    </div>
+
+    <div class="cards-4">
+      <article class="model-card openai">
+        <h3>OpenAI <small>GPT-5.2</small></h3>
+        <div class="score">9.4/10</div>
+        <ul>
+          <li>✅ الأفضل في الاستدلال متعدد الخطوات والوكلاء</li>
+          <li>✅ تكامل Sora + Canvas + البحث</li>
+          <li>⚠️ الأغلى في API</li>
+        </ul>
+        <div class="bars">
+          <label>الذكاء <span style="--w:95%"></span></label>
+          <label>البرمجة <span style="--w:96%"></span></label>
+          <label>العربية <span style="--w:88%"></span></label>
+          <label>السعر <span style="--w:60%"></span></label>
+        </div>
+      </article>
+      <article class="model-card claude">
+        <h3>Claude <small>4.5 Sonnet</small></h3>
+        <div class="score">9.3/10</div>
+        <ul>
+          <li>✅ ملك البرمجة والنصوص الطويلة (200K)</li>
+          <li>✅ الأكثر أماناً والتزاماً بالتعليمات</li>
+          <li>⚠️ توليد الصور والفيديو أضعف</li>
+        </ul>
+        <div class="bars">
+          <label>الذكاء <span style="--w:93%"></span></label>
+          <label>البرمجة <span style="--w:97%"></span></label>
+          <label>العربية <span style="--w:85%"></span></label>
+          <label>السعر <span style="--w:65%"></span></label>
+        </div>
+      </article>
+      <article class="model-card gemini">
+        <h3>Gemini <small>2.5 Pro</small></h3>
+        <div class="score">9.2/10</div>
+        <ul>
+          <li>✅ سياق 1M+ وتكامل Google (يوتيوب، درايف)</li>
+          <li>✅ الأسرع والأرخص في الفئة الاحترافية</li>
+          <li>⚠️ أحياناً أقل دقة في الأكواد المعقدة</li>
+        </ul>
+        <div class="bars">
+          <label>الذكاء <span style="--w:92%"></span></label>
+          <label>البرمجة <span style="--w:89%"></span></label>
+          <label>العربية <span style="--w:90%"></span></label>
+          <label>السعر <span style="--w:85%"></span></label>
+        </div>
+      </article>
+      <article class="model-card deepseek">
+        <h3>DeepSeek <small>V3.2</small></h3>
+        <div class="score">8.9/10</div>
+        <ul>
+          <li>✅ مفتوح المصدر ورخيص جداً</li>
+          <li>✅ قوي في الرياضيات والبرمجة</li>
+          <li>⚠️ دعم العربية والوسائط أضعف</li>
+        </ul>
+        <div class="bars">
+          <label>الذكاء <span style="--w:89%"></span></label>
+          <label>البرمجة <span style="--w:91%"></span></label>
+          <label>العربية <span style="--w:75%"></span></label>
+          <label>السعر <span style="--w:98%"></span></label>
+        </div>
+      </article>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>المعيار</th><th>OpenAI GPT-5.2</th><th>Claude 4.5</th><th>Gemini 2.5 Pro</th><th>DeepSeek V3.2</th></tr></thead>
+        <tbody>
+          <tr><td>الاستدلال والذكاء</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+          <tr><td>البرمجة</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐ الأفضل</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+          <tr><td>دعم العربية</td><td>ممتاز</td><td>جيد جداً</td><td>ممتاز</td><td>متوسط</td></tr>
+          <tr><td>طول السياق</td><td>400K</td><td>200K</td><td>1M+ الأكبر</td><td>128K</td></tr>
+          <tr><td>توليد صور/فيديو</td><td>الأفضل (Sora + DALL-E)</td><td>ضعيف</td><td>ممتاز (Veo)</td><td>لا يوجد</td></tr>
+          <tr><td>السعر (API)</td><td>مرتفع</td><td>مرتفع</td><td>متوسط</td><td>رخيص جداً ✅</td></tr>
+          <tr><td>الأنسب لـ</td><td>وكلاء + إبداع</td><td>مبرمجون وكتّاب</td><td>طلاب وباحثون</td><td>شركات ناشئة ومطورون</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Video tools -->
+  <section id="video" class="section">
+    <div class="section-head">
+      <div>
+        <h2>🎬 أفضل برامج إنشاء الفيديو بالذكاء الاصطناعي</h2>
+        <p>اختر أداتك حسب هدفك: سينمائي، تسويقي، تعليمي، أو سريع للسوشيال ميديا</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>الأداة</th><th>الأفضل لـ</th><th>الجودة</th><th>دعم العربية</th><th>السعر</th><th>الصعوبة</th><th>التقييم</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sora (OpenAI)</strong></td><td>مشاهد سينمائية واقعية</td><td>⭐⭐⭐⭐⭐</td><td>نصوص إنجليزية أفضل</td><td>20$/شهر ضمن Plus</td><td>سهل</td><td>9.6</td></tr>
+          <tr><td><strong>Runway Gen-4</strong></td><td>صناع الأفلام والمونتاج</td><td>⭐⭐⭐⭐⭐</td><td>متوسط</td><td>من 12$</td><td>متوسط</td><td>9.4</td></tr>
+          <tr><td><strong>Luma Dream Machine</strong></td><td>لقطات سريعة سوشيال ميديا</td><td>⭐⭐⭐⭐</td><td>متوسط</td><td>مجاني + 30$</td><td>سهل جداً</td><td>9.0</td></tr>
+          <tr><td><strong>HeyGen</strong></td><td>أفاتار ومقدم عربي للشركات</td><td>⭐⭐⭐⭐</td><td>✅ ممتاز (تعليق عربي)</td><td>من 24$</td><td>سهل</td><td>9.2</td></tr>
+          <tr><td><strong>Synthesia</strong></td><td>فيديو تعليمي وتدريب موظفين</td><td>⭐⭐⭐⭐</td><td>✅ يدعم العربية</td><td>من 22$</td><td>سهل</td><td>9.1</td></tr>
+          <tr><td><strong>Pika 2.0</strong></td><td>أنيمي ومؤثرات إبداعية</td><td>⭐⭐⭐⭐</td><td>ضعيف</td><td>مجاني + 10$</td><td>سهل</td><td>8.7</td></tr>
+          <tr><td><strong>Descript</strong></td><td>بودكاست + مونتاج بالنص</td><td>⭐⭐⭐⭐</td><td>جيد</td><td>من 12$</td><td>سهل</td><td>8.9</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip">💡 للمحتوى العربي التجاري: ابدأ بـ <strong>HeyGen أو Synthesia</strong>. للمشاهد السينمائية: <strong>Sora أو Runway</strong>. للتجربة المجانية: <strong>Luma أو Pika</strong>.</div>
+  </section>
+
+  <!-- Code tools -->
+  <section id="code" class="section">
+    <div class="section-head">
+      <div>
+        <h2>💻 أفضل برامج البرمجة بالذكاء الاصطناعي</h2>
+        <p>من المساعد داخل المحرر إلى الوكيل الذي يبني مشروعاً كاملاً</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>الأداة</th><th>النوع</th><th>نقاط القوة</th><th>يدعم العربية؟</th><th>السعر</th><th>التقييم</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cursor</strong></td><td>محرر كامل (مبني على VS Code)</td><td>وكيل يعدل ملفات متعددة، فهم المشروع كاملاً</td><td>شرح بالعربية ✅</td><td>20$/شهر</td><td>9.7 🏆</td></tr>
+          <tr><td><strong>GitHub Copilot</strong></td><td>مساعد داخل VS Code</td><td>إكمال سريع، تكامل GitHub، الأوسع انتشاراً</td><td>شرح بالعربية ✅</td><td>10$/شهر</td><td>9.3</td></tr>
+          <tr><td><strong>Claude Code</strong></td><td>وكيل طرفية</td><td>الأدق في المشاريع الكبيرة وإعادة الهيكلة</td><td>نعم ✅</td><td>ضمن اشتراك Pro</td><td>9.5</td></tr>
+          <tr><td><strong>Codeium / Windsurf</strong></td><td>محرر + إكمال مجاني</td><td>مجاني سخي، بديل ممتاز للمبتدئين</td><td>نعم</td><td>مجاني / 10$</td><td>8.9</td></tr>
+          <tr><td><strong>Replit AI</strong></td><td>بيئة سحابية</td><td>ابنِ وانشر من المتصفح بدون إعداد</td><td>نعم</td><td>مجاني + 20$</td><td>8.6</td></tr>
+          <tr><td><strong>Tabnine</strong></td><td>إكمال خاص آمن</td><td>خصوصية للشركات، يعمل دون سحابة</td><td>شرح فقط</td><td>من 12$</td><td>8.4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip">💡 مبتدئ؟ ابدأ بـ <strong>Copilot أو Codeium</strong>. محترف وتريد وكيلاً يبني عنك؟ <strong>Cursor أو Claude Code</strong>.</div>
+  </section>
+
+  <footer>
+    <p>مدار AI • صُنع للقارئ العربي • التحديث اليومي الساعة 8:00 صباحاً بتوقيت مسقط (GMT+4)</p>
+    <small>المحتوى تعريفي محدث بتاريخ اليوم. الأسعار والتقييمات استرشادية وقد تتغير.</small>
+  </footer>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
